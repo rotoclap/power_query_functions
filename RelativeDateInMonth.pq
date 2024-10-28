@@ -78,7 +78,7 @@ RelativeDateInMonthType = type function
         value as (type text meta 
             [
                 Documentation.FieldCaption = "The keywords defining the relative date",
-                Documentation.FieldDescription = "Will be multiplied by 10",
+                Documentation.FieldDescription = "",
                 Documentation.SampleValues = {"third tuesday september 2023"}
             ]
         )
