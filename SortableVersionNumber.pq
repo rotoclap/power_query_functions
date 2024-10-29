@@ -1,5 +1,5 @@
 let
-    SortableVersionNumber = (version as text) as any =>
+    SortableVersionNumber = (version as text) as text =>
         let
             // Function
             parts = Text.Split(version, "."),
