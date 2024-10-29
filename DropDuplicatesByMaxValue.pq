@@ -1,14 +1,17 @@
 let
-    DropDuplicatesByMaxValue = (table_ as table, groupColumns as list, columnMax as text) as table =>
+    DropDuplicatesByMaxValue = (
+        table_ as table, groupColumns as list, columnMax as text, optional maxFunc as function
+    ) as table =>
         let
             // Function
+            maxFunc = if maxFunc = null then List.Max else maxFunc,
             #"GroupByMaxField" = Table.Group(
                 table_,
                 groupColumns,
                 {
                     {
                         "__max_field",
-                        each List.Max(Table.Column(_, columnMax)),
+                        each maxFunc(Table.Column(_, columnMax)),
                         Type.TableColumn(Value.Type(table_), columnMax)
                     }
                 }
@@ -44,19 +47,29 @@ let
                 Documentation.FieldDescription = "",
                 Documentation.SampleValues = {"columnMax"}
             ]
+        ),
+        optional maxFunc as (
+            type function meta [
+                Documentation.FieldCaption = "maxFunc",
+                Documentation.FieldDescription = "",
+                Documentation.SampleValues = {"List.Max"}
+            ]
         )
     ) as list meta [
         Documentation.Name = "DropDuplicatesByMaxValue",
-        Documentation.LongDescription = "Group <table_> by <groupColumns> names list,
-            get max value of <columnMax> column and return from the original <table_>
-            only the row where the <groupColumns> and max value of <columnMax> are
-            present.",
+        Documentation.LongDescription = "Performs a groupBy on a table <table_> based on
+            a list of columns <groupColumns>, then returns a table in which there is
+            only, for each group, the rows containing the maximum value of the specified
+            column <columnMax>. An optional function <maxFunc> for calculating the
+            maximum value can be used. If <maxFunc> is null, the `List.Max` function
+            will be used.",
         Documentation.Examples = {
             [
-                Description = "Example description",
+                Description = "Drop duplicate server entry, keeping the most recent
+                    logon infos",
                 Code = "table_ = Table.FromRecords({
     [ID = 1, Name = ""ServerA"", Domain = ""AAAA"", LastLogon=""2024-07-08""],
-    [ID = 2, Name = ""ServerA"", Domain = ""BBBB"",LastLogon=""2024-07-05""],
+    [ID = 2, Name = ""ServerA"", Domain = ""BBBB"", LastLogon=""2024-07-05""],
     [ID = 3, Name = ""ServerB"", Domain = ""CCCC"", LastLogon=""2024-07-01""]
 }),
 
