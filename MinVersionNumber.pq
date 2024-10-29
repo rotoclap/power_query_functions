@@ -34,8 +34,9 @@ let
         )
     ) as text meta [
         Documentation.Name = "MinVersionNumber",
-        Documentation.LongDescription = "Return the lower version number. All version numbers in the list must have the same number of parts and each part must be separated by `.`
-",
+        Documentation.LongDescription = "Return the lower version number. All version
+            numbers in the list must have the same number of parts and each part must be
+            separated by `.`",
         Documentation.Examples = {
             [
                 Description = "Get the lower version number in a list",

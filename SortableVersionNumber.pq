@@ -23,7 +23,8 @@ let
         )
     ) as list meta [
         Documentation.Name = "SortableVersionNumber",
-        Documentation.LongDescription = "Transform a version number (xx.yyy.zzz) to a sortable string",
+        Documentation.LongDescription = "Transform a version number (xx.yyy.zzz) to a 
+            sortable string",
         Documentation.Examples = {
             [
                 Description = "Get a sortable version string",

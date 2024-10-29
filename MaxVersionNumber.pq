@@ -34,8 +34,9 @@ let
         )
     ) as text meta [
         Documentation.Name = "MaxVersionNumber",
-        Documentation.LongDescription = "Return the greater version number. All version numbers in the list must have the same number of parts and each part must be separated by `.`
-",
+        Documentation.LongDescription = "Return the greater version number. All version
+            numbers in the list must have the same number of parts and each part must be
+            separated by `.`",
         Documentation.Examples = {
             [
                 Description = "Get the greater version number in a list",

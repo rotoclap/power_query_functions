@@ -23,23 +23,8 @@ let
         Documentation.Examples = {
             [
                 Description = "Example description",
-                Code = "table_ = Table.FromRecords({
-    [version = ""1.0.3.25""],
-    [version = ""0.0.17.1""],
-    [version = ""21.2""]
-}),
-
-table2_ = Table.TransformColumns(
-    table_,
-    {
-        {""version"", each ConvertVersionNumberToInteger([_], 3)}
-    }
-",
-                Result = "{
-    [version = ""1.0.3""],
-    [version = ""0.0.17""],
-    [version = ""21.2.0""]
-}"
+                Code = "",
+                Result = ""
             ]
         }
     ]
